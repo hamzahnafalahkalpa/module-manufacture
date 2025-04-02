@@ -23,5 +23,5 @@ interface Jasa extends DataManagement
     public function viewJasaList(): array;
     public function prepareDeleteJasa(? array $attributes = null): bool;
     public function deleteJasa(): bool;
-    public function Jasa(mixed $conditionals = null): Builder;
+    public function jasa(mixed $conditionals = null): Builder;
 }
