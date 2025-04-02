@@ -3,6 +3,7 @@
 namespace Hanafalah\ModuleManufacture\Models;
 
 use Hanafalah\LaravelSupport\Models\BaseModel;
+use Hanafalah\ModuleManufacture\Enums\SHBJ\Flag;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Hanafalah\ModuleManufacture\Resources\SHBJ\{
     ViewSHBJ, ShowSHBJ
@@ -23,6 +24,9 @@ class SHBJ extends BaseModel{
     public function getShowResource(){
         return ShowSHBJ::class;
     }
+
+    public function scopeBarang($builder){return $builder->where('flag',Flag::BARANG);}
+    public function scopeJasa($builder){return $builder->where('flag',Flag::JASA);}
 
     public function reference(){return $this->morphTo();}
 }
