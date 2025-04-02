@@ -12,7 +12,11 @@ class SHBJData extends Data implements DataSHBJData{
         #[MapName('id')]
         #[MapInputName('id')]
         public mixed $id = null,
-    
+
+        #[MapName('name')]
+        #[MapInputName('name')]
+        public ?string $name = null,
+
         #[MapName('reference_type')]
         #[MapInputName('reference_type')]
         public string $reference_type,
@@ -23,7 +27,7 @@ class SHBJData extends Data implements DataSHBJData{
     
         #[MapName('reference')]
         #[MapInputName('reference')]
-        public array $reference,
+        public ?array $reference = null,
     
         #[MapName('flag')]
         #[MapInputName('flag')]
@@ -34,12 +38,17 @@ class SHBJData extends Data implements DataSHBJData{
         public int $price = 0
     ){
         if (isset($this->reference_id,$this->reference_type)){
-            $model = $this->{$this->reference_type}()->find($this->reference_id);
+            $model = $this->{$this->reference_type.'Model'}()->find($this->reference_id);
             if (isset($model)){
                 $this->reference = [
                     'id'   => $model->getKey(),
                     'name' => $model->name
                 ];
+                $this->name = $model->name;
+            }else{
+                if (!isset($this->name)){
+                    throw new \Exception('name is required');
+                }
             }
         }
     }

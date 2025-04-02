@@ -27,10 +27,12 @@ return new class extends Migration
         if (!$this->isTableExists()) {
             Schema::create($table_name, function (Blueprint $table) {
                 $table->id();
+                $table->string('name',255)->nullable(false);
                 $table->string('reference_type',50)->nullable();
                 $table->string('reference_id',36)->nullable();
                 $table->enum('flag',array_column(Flag::cases(),'value'))->nullable(false);
                 $table->unsignedBigInteger('price')->defaul(0)->nullable(false);
+                $table->json('props')->nullable();
                 $table->timestamps();
                 $table->softDeletes();
             });

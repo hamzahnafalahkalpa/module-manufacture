@@ -2,6 +2,7 @@
 
 namespace Hanafalah\ModuleManufacture\Models;
 
+use Hanafalah\LaravelHasProps\Concerns\HasProps;
 use Hanafalah\LaravelSupport\Models\BaseModel;
 use Hanafalah\ModuleManufacture\Enums\SHBJ\Flag;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -11,10 +12,10 @@ use Hanafalah\ModuleManufacture\Resources\SHBJ\{
 
 //SATUAN HARGA BARANG DAN JASA
 class SHBJ extends BaseModel{
-    use SoftDeletes;
+    use SoftDeletes, HasProps;
 
     protected $list = [
-        'id', 'reference_type', 'reference_id', 'flag', 'price'
+        'id', 'name', 'reference_type', 'reference_id', 'flag', 'price', 'props'
     ];
 
     public function getViewResource(){
