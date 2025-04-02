@@ -20,7 +20,6 @@
     },
     "require": {
         "hanafalah/laravel-support": "1.x",
-        "hanafalah/module-manufacture": "1.x",
         "hanafalah/module-item": "1.x",
         "hanafalah/module-service": "1.x"
     },
