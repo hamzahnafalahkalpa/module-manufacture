@@ -1,0 +1,29 @@
+{
+    "name": "hanafalah/module-manufacture",
+    "autoload": {
+        "psr-4": {
+            "Hanafalah\\ModuleManufacture\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "hamzah",
+            "email": "hamzahnafalah@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Hanafalah\\ModuleManufacture\\ModuleManufactureServiceProvider"
+            ]
+        }
+    },
+    "require": {
+        "hanafalah/laravel-support": "1.x",
+        "hanafalah/module-manufacture": "1.x",
+        "hanafalah/module-item": "1.x",
+        "hanafalah/module-service": "1.x"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": false
+}
