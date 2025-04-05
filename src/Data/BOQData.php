@@ -3,11 +3,11 @@
 namespace Hanafalah\ModuleManufacture\Data;
 
 use Hanafalah\LaravelSupport\Supports\Data;
-use Hanafalah\ModuleManufacture\Contracts\Data\BOQData as DataBOQData;
+use Hanafalah\ModuleManufacture\Contracts\Data\BoqData as DataBoqData;
 use Spatie\LaravelData\Attributes\MapInputName;
 use Spatie\LaravelData\Attributes\MapName;
 
-class BOQData extends Data implements DataBOQData{
+class BoqData extends Data implements DataBoqData{
     public function __construct(
         #[MapName('id')]    
         #[MapInputName('id')]

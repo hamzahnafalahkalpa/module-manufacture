@@ -2,4 +2,4 @@
 
 namespace Hanafalah\ModuleManufacture\Contracts\Data;
 
-interface JasaData{}
+interface BomData{}

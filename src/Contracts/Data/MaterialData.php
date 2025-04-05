@@ -2,4 +2,4 @@
 
 namespace Hanafalah\ModuleManufacture\Contracts\Data;
 
-interface BoqData{}
+interface MaterialData{}

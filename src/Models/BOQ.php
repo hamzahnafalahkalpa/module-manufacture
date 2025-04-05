@@ -6,12 +6,12 @@ use Hanafalah\LaravelHasProps\Concerns\HasProps;
 use Hanafalah\LaravelSupport\Models\BaseModel;
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Hanafalah\ModuleManufacture\Resources\BOQ\{ViewBOQ, ShowBOQ};
+use Hanafalah\ModuleManufacture\Resources\Boq\{ViewBoq, ShowBoq};
 
 
-// BOQ ini ada hubungannya dengan bill of material data, dan juga RAB,
-// BOQ merupkana hasil rinci hitungan BOM terhadap sebuah volume yang ada didalam RAB atau RAP
-class BOQ extends BaseModel {
+// Boq ini ada hubungannya dengan bill of material data, dan juga RAB,
+// Boq merupkana hasil rinci hitungan BOM terhadap sebuah volume yang ada didalam RAB atau RAP
+class Boq extends BaseModel {
     use HasUlids, SoftDeletes, HasProps;
 
     public $incrementing  = false;
@@ -22,13 +22,13 @@ class BOQ extends BaseModel {
     ];
 
     public function getViewResource(){
-        return ViewBOQ::class;
+        return ViewBoq::class;
     }
 
     public function getShowResource(){
-        return ShowBOQ::class;
+        return ShowBoq::class;
     }
 
-    public function shbj(){return $this->belongsToModel('SHBJ');}
+    public function shbj(){return $this->belongsToModel('Shbj');}
     public function unit(){return $this->belongsToModel('ItemStuff', 'unit_id');} 
 }

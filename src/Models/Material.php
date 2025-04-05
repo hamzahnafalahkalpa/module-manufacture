@@ -38,6 +38,7 @@ class Material extends BaseModel{
         return ShowMaterial::class;
     }
 
-    public function reference(){return $this->morphTo();}
-    public function packaging(){return $this->belongsToModel('ItemStuff');}
+    public function item(){return $this->morphOneModel('Item','reference');}
+    public function bom(){return $this->hasOneModel('BOM');}
+    public function boms(){return $this->hasManyModel('BOM');}
 }

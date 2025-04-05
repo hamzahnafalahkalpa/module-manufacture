@@ -1,8 +1,8 @@
 <?php
 
-namespace Hanafalah\ModuleManufacture\Resources\BOQ;
+namespace Hanafalah\ModuleManufacture\Resources\Boq;
 
-class ShowBOQ extends ViewBOQ
+class ShowBoq extends ViewBoq
 {
     public function toArray(\Illuminate\Http\Request $request): array
     {
