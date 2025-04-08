@@ -10,26 +10,24 @@ use Spatie\LaravelData\Attributes\MapInputName;
 use Spatie\LaravelData\Attributes\MapName;
 
 class ProductData extends Data implements DataProductData{
-    public function __construct(
-        #[MapName('id')]    
-        #[MapInputName('id')]
-        public mixed $id,
+    #[MapName('id')]    
+    #[MapInputName('id')]
+    public mixed $id;
 
-        #[MapName('name')]    
-        #[MapInputName('name')]
-        public string $name,
+    #[MapName('name')]    
+    #[MapInputName('name')]
+    public string $name;
 
-        #[MapName('item')]    
-        #[MapInputName('item')]
-        public ItemData $item,
+    #[MapName('item')]    
+    #[MapInputName('item')]
+    public ItemData $item;
 
-        #[MapName('materials')]    
-        #[MapInputName('materials')]
-        #[DataCollectionOf(MaterialData::class)]
-        public array $materials,
+    #[MapName('materials')]    
+    #[MapInputName('materials')]
+    #[DataCollectionOf(MaterialData::class)]
+    public array $materials;
 
-        #[MapName('props')]    
-        #[MapInputName('props')]
-        public ?array $props = [],
-    ){}
+    #[MapName('props')]    
+    #[MapInputName('props')]
+    public ?array $props = [];
 }
