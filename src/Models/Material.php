@@ -18,8 +18,15 @@ class Material extends BaseModel{
     public $show = [];
 
     protected $casts = [
-        'name' => 'string'
+        'name' => 'string',
+        'material_category_name' => 'string'
     ];
+
+    public function getPropsQuery(): array{
+        return [
+            'material_category_name' => 'props->prop_material_category->name'
+        ];
+    }
 
     protected static function booted(): void{
         parent::booted();
@@ -28,6 +35,14 @@ class Material extends BaseModel{
                 $query->material_code = static::hasEncoding('MATERIAL_CODE'); 
             }
         });
+    }
+
+    public function viewUsingRelation(): array{
+        return ['item'];
+    }
+
+    public function showUsingRelation(): array{
+        return ['item'];
     }
 
     public function getViewResource(){

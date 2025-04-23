@@ -11,6 +11,15 @@ class MaterialCategory extends BaseModel
         'id', 'parent_id', 'name', 'note'
     ];
 
+
+    public function viewUsingRelation(): array{
+        return ['childs'];
+    }
+
+    public function showUsingRelation(): array{
+        return ['childs'];
+    }
+
     public function getViewResource(){
         return ViewMaterialCategory::class;
     }
