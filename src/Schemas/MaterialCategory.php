@@ -7,6 +7,7 @@ use Hanafalah\ModuleManufacture\Contracts\Schemas\MaterialCategory as ContractsM
 use Illuminate\Database\Eloquent\Model;
 use Hanafalah\ModuleManufacture\Contracts\Data\MaterialCategoryData;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 
 class MaterialCategory extends PackageManagement implements ContractsMaterialCategory
 {
@@ -36,6 +37,10 @@ class MaterialCategory extends PackageManagement implements ContractsMaterialCat
         return $this->transaction(function () use ($material_category_dto) {
             return $this->showMaterialCategory($this->prepareStoreMaterialCategory($material_category_dto ?? $this->requestDTO(MaterialCategoryData::class)));
         });
+    }
+
+    public function prepareViewMaterialCategoryList(? array $attrubutes = null): Collection{
+        return $this->materialCategory()->with($this->viewUsingRelation())->whereNull('parent_id')->get();
     }
 
     public function materialCategory(mixed $conditionals = null): Builder{
