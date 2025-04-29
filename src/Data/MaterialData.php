@@ -53,10 +53,12 @@ class MaterialData extends Data implements DataMaterialData, BaseData{
                     'note'       => $data->material_category['note'] ?? null,
                 ]);
             }
-            $data->props['prop_material_category'] = [
-                'id'   => $material_category->getKey(),
-                'name' => $material_category->name
-            ];
+            if (isset($material_category)){
+                $data->props['prop_material_category'] = [
+                    'id'   => $material_category->getKey(),
+                    'name' => $material_category->name
+                ];
+            }
         }
 
         return $data;
