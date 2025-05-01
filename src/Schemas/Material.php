@@ -36,7 +36,7 @@ class Material extends PackageManagement implements ContractsMaterial
             $item_dto->name           = $material_dto->name;
             $item_dto->reference_id   = $material->getKey();
             $item_dto->reference_type = $material->getMorphClass();
-            $item = $this->schemaContract('item')->prepareStoreItem($item_dto);
+            $this->schemaContract('item')->prepareStoreItem($item_dto);
         }
         return static::$material_model = $material;
     }
