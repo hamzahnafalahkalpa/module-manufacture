@@ -43,15 +43,17 @@ class MaterialData extends Data implements DataMaterialData, BaseData{
             'id'   => null,
             'name' => null
         ];
-        if (isset($data->material_category_id) || !isset($data->material_category)){
+        if (isset($data->material_category_id) || isset($data->material_category)){
             if (isset($data->material_category_id)) {
                 $material_category = $new->MaterialCategoryModel()->findOrFail($data->material_category_id);
             }elseif(isset($data->material_category)){
-                $material_category = $new->MaterialCategoryModel()->findOrCreate([
-                    'name'       => $data->material_category['name'],
-                    'parent_id'  => $data->material_category['parent_id'] ?? null,
-                    'note'       => $data->material_category['note'] ?? null,
+                $material_category = $new->MaterialCategoryModel()->firstOrCreate([
+                    'name'       => $data->material_category->name,
+                    'parent_id'  => $data->material_category->parent_id ?? null,                    
+                ],[
+                    'note'       => $data->material_category->note ?? null,
                 ]);
+                $data->material_category_id = $material_category->getKey();
             }
             if (isset($material_category)){
                 $data->props['prop_material_category'] = [
