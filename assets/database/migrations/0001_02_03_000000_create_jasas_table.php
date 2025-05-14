@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Hanafalah\LaravelSupport\Concerns\NowYouSeeMe;
-use Hanafalah\ModuleManufacture\Models\Jasa;
+use Hanafalah\ModuleRencanaAnggaran\Models\Shbj\Jasa;
 
 return new class extends Migration
 {
