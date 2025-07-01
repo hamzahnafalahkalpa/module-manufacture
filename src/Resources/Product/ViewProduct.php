@@ -12,7 +12,7 @@ class ViewProduct extends ApiResource{
             'id'   => $this->id,
             'name' => $this->name, 
             'item' => $this->relationValidation('item',function(){
-                return $this->item->toViewApi();
+                return $this->item->toViewApi()->resolve();
             }),
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at

@@ -9,11 +9,11 @@ class ShowProduct extends ViewProduct{
     {
         $arr = [
             'item' => $this->relationValidation('item',function(){
-                return $this->item->toViewApi();
+                return $this->item->toViewApi()->resolve();
             }),
             'materials' => $this->relationValidation('materials',function(){
                 return $this->materials->transform(function($material){
-                    return $material->toViewApi();
+                    return $material->toViewApi()->resolve();
                 });
             })
         ];
