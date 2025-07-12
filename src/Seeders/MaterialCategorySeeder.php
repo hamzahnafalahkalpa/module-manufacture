@@ -31,10 +31,10 @@ class MaterialCategorySeeder extends Seeder
         $createdCategory = app(config('database.models.MaterialCategory'))->UpdateOrCreate([
             'name' => $category['name'],
         ], [
-            'note'      => $category['note'] ?? null,
             'parent_id' => $parent_id ?? null
         ]);
-
+        $createdCategory->note = $category['note'];
+        $createdCategory->save();
         if (!empty($category['childs'])) {
             foreach ($category['childs'] as $child) {
                 $this->createCategory($child, $createdCategory->id);

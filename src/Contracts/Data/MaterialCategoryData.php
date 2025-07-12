@@ -2,4 +2,6 @@
 
 namespace Hanafalah\ModuleManufacture\Contracts\Data;
 
-interface MaterialCategoryData{}
+use Hanafalah\LaravelSupport\Contracts\Data\UnicodeData;
+
+interface MaterialCategoryData extends UnicodeData{}

@@ -2,14 +2,13 @@
 
 namespace Hanafalah\ModuleManufacture\Schemas;
 
-use Hanafalah\LaravelSupport\Supports\PackageManagement;
+use Hanafalah\LaravelSupport\Schemas\Unicode;
 use Hanafalah\ModuleManufacture\Contracts\Schemas\MaterialCategory as ContractsMaterialCategory;
 use Illuminate\Database\Eloquent\Model;
 use Hanafalah\ModuleManufacture\Contracts\Data\MaterialCategoryData;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection;
 
-class MaterialCategory extends PackageManagement implements ContractsMaterialCategory
+class MaterialCategory extends Unicode implements ContractsMaterialCategory
 {
     protected string $__entity = 'MaterialCategory';
     public static $material_category_model;
@@ -23,30 +22,12 @@ class MaterialCategory extends PackageManagement implements ContractsMaterialCat
     ];
 
     public function prepareStoreMaterialCategory(MaterialCategoryData $material_category_dto): Model{
-        $material_category = $this->materialCategory()->updateOrCreate([
-            'id' => $material_category_dto->id ?? null,
-        ],[
-            'parent_id'      => $material_category_dto->parent_id ?? null,
-            'name'           => $material_category_dto->name,
-            'note'           => $material_category_dto->note ?? null
-        ]);
+        $material_category = $this->prepareStoreUnicode($material_category_dto);
         return static::$material_category_model = $material_category;
     }
 
-    public function storeMaterialCategory(? MaterialCategoryData $material_category_dto = null): array{
-        return $this->transaction(function () use ($material_category_dto) {
-            return $this->showMaterialCategory($this->prepareStoreMaterialCategory($material_category_dto ?? $this->requestDTO(MaterialCategoryData::class)));
-        });
-    }
-
-    public function prepareViewMaterialCategoryList(? array $attrubutes = null): Collection{
-        return $this->materialCategory()->with($this->viewUsingRelation())->whereNull('parent_id')->get();
-    }
-
     public function materialCategory(mixed $conditionals = null): Builder{
-        $this->booting();
-        return $this->MaterialCategoryModel()->conditionals($this->mergeCondition($conditionals))
-                    ->withParameters()->orderBy('created_at','desc');
+        return $this->unicode($conditionals);
     }
 }
 

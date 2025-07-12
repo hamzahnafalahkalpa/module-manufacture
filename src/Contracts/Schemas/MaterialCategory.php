@@ -2,6 +2,7 @@
 
 namespace Hanafalah\ModuleManufacture\Contracts\Schemas;
 
+use Hanafalah\LaravelSupport\Contracts\Schemas\Unicode;
 use Hanafalah\LaravelSupport\Contracts\Supports\DataManagement;
 use Hanafalah\ModuleManufacture\Contracts\Data\MaterialCategoryData;
 use Illuminate\Database\Eloquent\Builder;
@@ -20,9 +21,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method array viewMaterialCategoryPaginate(?PaginateData $paginate_dto = null)
  */
 
- interface MaterialCategory extends DataManagement
+ interface MaterialCategory extends Unicode
  {
      public function prepareStoreMaterialCategory(MaterialCategoryData $material_category_dto): Model;
-     public function storeMaterialCategory(?MaterialCategoryData $material_category_dto = null): array;
-     public function MaterialCategory(mixed $conditionals = null): Builder;
+     public function materialCategory(mixed $conditionals = null): Builder;
  }

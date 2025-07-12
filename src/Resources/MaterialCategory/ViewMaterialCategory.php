@@ -3,22 +3,16 @@
 namespace Hanafalah\ModuleManufacture\Resources\MaterialCategory;
 
 use Hanafalah\LaravelSupport\Resources\ApiResource;
+use Hanafalah\LaravelSupport\Resources\Unicode\ViewUnicode;
 
-class ViewMaterialCategory extends ApiResource
+class ViewMaterialCategory extends ViewUnicode
 {
     public function toArray(\Illuminate\Http\Request $request): array
     {
         $arr = [
-            'id'             => $this->id,
-            'parent_id'      => $this->parent_id,
-            'name'           => $this->name, 
             'note'           => $this->note,
-            'childs'         => $this->relationValidation('childs', function () {
-                return $this->childs->transform(function ($child) {
-                    return new static($child);
-                });
-            })
         ];
+        $arr = $this->mergeArray(parent::toArray($request),$arr);
         return $arr;
     }
 }

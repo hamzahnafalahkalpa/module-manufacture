@@ -3,24 +3,13 @@
 namespace Hanafalah\ModuleManufacture\Models;
 
 use Hanafalah\LaravelSupport\Models\BaseModel;
+use Hanafalah\LaravelSupport\Models\Unicode\Unicode;
 use Hanafalah\ModuleManufacture\Resources\MaterialCategory\{ShowMaterialCategory, ViewMaterialCategory};
+use Illuminate\Database\Eloquent\Concerns\HasUlids;
 
-class MaterialCategory extends BaseModel
+class MaterialCategory extends Unicode
 {
-    public $incrementing = false;
-    protected $keyType = 'string';
-    protected $primaryKey = 'id';
-    protected $list = [
-        'id', 'parent_id', 'name', 'note'
-    ];
-
-    public function viewUsingRelation(): array{
-        return ['childs'];
-    }
-
-    public function showUsingRelation(): array{
-        return ['childs'];
-    }
+    protected $table = 'unicodes';
 
     public function getViewResource(){
         return ViewMaterialCategory::class;
@@ -29,8 +18,6 @@ class MaterialCategory extends BaseModel
     public function getShowResource(){
         return ShowMaterialCategory::class;
     }
-
-    public function childs(){return $this->hasManyModel('MaterialCategory','parent_id')->with('childs');}
 
     public function material(){return $this->hasOneModel('Material');}
     public function materials(){return $this->hasManyModel('Material');}
