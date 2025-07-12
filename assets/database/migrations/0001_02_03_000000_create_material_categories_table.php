@@ -27,7 +27,7 @@ return new class extends Migration
         // Create the material_categories table if it doesn't exist
         if (!$this->isTableExists()) {
             Schema::create($table_name, function (Blueprint $table) {
-                $table->id();
+                $table->ulid('id')->primary();
                 $table->string('name', 255);
                 $table->mediumText('note')->nullable();
                 $table->timestamps();

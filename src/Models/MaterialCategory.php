@@ -7,10 +7,12 @@ use Hanafalah\ModuleManufacture\Resources\MaterialCategory\{ShowMaterialCategory
 
 class MaterialCategory extends BaseModel
 {
+    public $incrementing = false;
+    protected $keyType = 'string';
+    protected $primaryKey = 'id';
     protected $list = [
         'id', 'parent_id', 'name', 'note'
     ];
-
 
     public function viewUsingRelation(): array{
         return ['childs'];
