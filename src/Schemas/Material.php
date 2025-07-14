@@ -21,6 +21,10 @@ class Material extends PackageManagement implements ContractsMaterial
         ]
     ];
 
+    public function prepareStore(MaterialData $material_dto): Model{
+        return $this->prepareStoreMaterial($material_dto);
+    }
+
     public function prepareStoreMaterial(MaterialData $material_dto): Model{
         $material = $this->material()->updateOrCreate([
             'id' => $material_dto->id ?? null
