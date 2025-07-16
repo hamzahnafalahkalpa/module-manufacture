@@ -19,8 +19,8 @@
         }
     },
     "require": {
-        "hanafalah/laravel-support": "dev-main",
-        "hanafalah/module-item": "dev-main",
-        "hanafalah/module-service": "dev-main"
+        "hanafalah/laravel-support": "1.x-dev as 1.0",
+        "hanafalah/module-item": "1.x-dev as 1.0",
+        "hanafalah/module-service": "1.x-dev as 1.0"
     }
 }
