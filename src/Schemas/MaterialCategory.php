@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Builder;
 class MaterialCategory extends Unicode implements ContractsMaterialCategory
 {
     protected string $__entity = 'MaterialCategory';
-    public static $material_category_model;
+    public $material_category_model;
 
     protected array $__cache = [
         'index' => [
@@ -23,7 +23,7 @@ class MaterialCategory extends Unicode implements ContractsMaterialCategory
 
     public function prepareStoreMaterialCategory(MaterialCategoryData $material_category_dto): Model{
         $material_category = $this->prepareStoreUnicode($material_category_dto);
-        return static::$material_category_model = $material_category;
+        return $this->material_category_model = $material_category;
     }
 
     public function materialCategory(mixed $conditionals = null): Builder{

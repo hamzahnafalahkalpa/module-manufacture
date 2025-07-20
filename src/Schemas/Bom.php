@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Builder;
 class Bom extends PackageManagement implements ContractsBom
 {
     protected string $__entity = 'Bom';
-    public static $bom_model;
+    public $bom_model;
 
     protected array $__cache = [
         'index' => [
@@ -33,7 +33,7 @@ class Bom extends PackageManagement implements ContractsBom
         $bom = $this->bom()->updateOrCreate($guard);
         $this->fillingProps($bom,$bom_dto->props);
         $bom->save();
-        return static::$bom_model = $bom;
+        return $this->bom_model = $bom;
     }
 
     public function storeBom(? BomData $bom_dto = null): array{

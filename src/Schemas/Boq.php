@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Builder;
 class Boq extends PackageManagement implements ContractsBoq
 {
     protected string $__entity = 'Boq';
-    public static $boq_model;
+    public $boq_model;
 
     protected array $__cache = [
         'index' => [
@@ -34,7 +34,7 @@ class Boq extends PackageManagement implements ContractsBoq
         ]);
         $this->fillingProps($boq,$boq_dto->props);
         $boq->save();
-        return static::$boq_model = $boq;
+        return $this->boq_model = $boq;
     }
 
     public function storeBoq(? BoqData $boq_dto = null): array{

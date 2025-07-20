@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Builder;
 class Material extends PackageManagement implements ContractsMaterial
 {
     protected string $__entity = 'Material';
-    public static $material_model;
+    public $material_model;
 
     protected array $__cache = [
         'index' => [
@@ -42,7 +42,7 @@ class Material extends PackageManagement implements ContractsMaterial
             $item_dto->reference_type = $material->getMorphClass();
             $this->schemaContract('item')->prepareStoreItem($item_dto);
         }
-        return static::$material_model = $material;
+        return $this->material_model = $material;
     }
 
     public function storeMaterial(? MaterialData $material_dto = null): array{

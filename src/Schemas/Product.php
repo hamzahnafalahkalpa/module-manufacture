@@ -15,7 +15,7 @@ use Illuminate\Pagination\LengthAwarePaginator;
 class Product extends PackageManagement implements ContractsProduct
 {
     protected string $__entity = 'Product';
-    public static $product_model;
+    public $product_model;
 
     protected array $__cache = [
         'index' => [
@@ -36,7 +36,7 @@ class Product extends PackageManagement implements ContractsProduct
     }
 
     public function getProduct(): mixed{
-        return static::$product_model;
+        return $this->product_model;
     }
 
     public function prepareShowProduct(?Model $model = null, ?array $attributes = null): Model{
@@ -51,7 +51,7 @@ class Product extends PackageManagement implements ContractsProduct
         } else {
             $model->load($this->showUsingRelation());
         }
-        return static::$product_model = $model;
+        return $this->product_model = $model;
     }    
 
     public function showProduct(?Model $model = null): array{
@@ -92,7 +92,7 @@ class Product extends PackageManagement implements ContractsProduct
             }
         }
 
-        return static::$product_model = $product;
+        return $this->product_model = $product;
     }
 
     public function storeProduct(? ProductData $product_dto = null): array{
