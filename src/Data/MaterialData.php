@@ -21,6 +21,10 @@ class MaterialData extends Data implements DataMaterialData, BaseData{
     #[MapInputName('name')]
     public ?string $name = null;
 
+    #[MapName('flag')]    
+    #[MapInputName('flag')]
+    public ?string $flag = null;
+
     #[MapName('material_category_id')]    
     #[MapInputName('material_category_id')]
     public mixed $material_category_id = null;
@@ -36,6 +40,10 @@ class MaterialData extends Data implements DataMaterialData, BaseData{
     #[MapName('props')]    
     #[MapInputName('props')]
     public ?array $props = [];
+
+    public static function before(array &$attributes){
+        $attributes['flag'] ??= 'Material';
+    }
 
     public static function after(MaterialData $data): MaterialData{
         $new = self::new();

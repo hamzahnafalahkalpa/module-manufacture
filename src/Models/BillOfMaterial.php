@@ -4,26 +4,27 @@ namespace Hanafalah\ModuleManufacture\Models;
 
 use Hanafalah\LaravelHasProps\Concerns\HasProps;
 use Hanafalah\LaravelSupport\Models\BaseModel;
-use Hanafalah\ModuleManufacture\Resources\Bom\{ViewBom, ShowBom};
+use Hanafalah\ModuleManufacture\Resources\BillOfMaterial\{ViewBillOfMaterial, ShowBillOfMaterial};
 use Illuminate\Database\Eloquent\Concerns\HasUlids;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Bom extends BaseModel{
+class BillOfMaterial extends BaseModel{
     use HasUlids, SoftDeletes, HasProps;
 
     public $incrementing  = false;
     protected $keyType    = 'string';
     protected $primaryKey = 'id';
     protected $list = [
-        'id', 'item_id', 'material_id', 'props'
+        'id', 'bill_type', 'bill_id', 'material_type', 'material_id', 
+        'coefficient', 'qty', 'props'
     ];
 
     public function getViewResource(){
-        return ViewBom::class;
+        return ViewBillOfMaterial::class;
     }
 
     public function getShowResource(){
-        return ShowBom::class;
+        return ShowBillOfMaterial::class;
     }
 
     public function item(){return $this->belongsToModel('Item');} 

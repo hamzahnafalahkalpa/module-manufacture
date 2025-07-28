@@ -31,6 +31,7 @@ return new class extends Migration
                 $table->ulid('id')->primary();
                 $table->string('material_code')->nullable();
                 $table->string('name',255)->nullable();
+                $table->string('flag',100)->nullable();
 
                 $table->foreignIdFor($material_category::class)
                     ->index()->constrained()->cascadeOnDelete()->cascadeOnUpdate();

@@ -13,7 +13,7 @@ class Material extends BaseModel{
     use HasUlids, HasProps, SoftDeletes, HasItem;
 
     public $list = [
-        'id', 'material_code', 'name', 'material_category_id', 'props'
+        'id', 'material_code', 'flag', 'name', 'material_category_id', 'props'
     ];
     public $show = [];
 
@@ -35,6 +35,12 @@ class Material extends BaseModel{
                 $query->material_code = static::hasEncoding('MATERIAL_CODE'); 
             }
         });
+        static::addGlobalScope('flag',function($query){
+            $query->flagIn((new static)->getMorphClass());
+        });
+        static::creating(function($query){
+            $query->flag ??= (new static)->getMorphClass();
+        });
     }
 
     public function viewUsingRelation(): array{
@@ -54,6 +60,7 @@ class Material extends BaseModel{
     }
 
     public function item(){return $this->morphOneModel('Item','reference');}
-    public function bom(){return $this->hasOneModel('BOM');}
-    public function boms(){return $this->hasManyModel('BOM');}
+    public function bom(){return $this->morphOneModel('BillOfMaterial','bill');}
+    public function boms(){return $this->morphManyModel('BillOfMaterial','bill');}
+    public function bomAsMaterial(){return $this->morphOneModel('BillOfMaterial','material');}
 }

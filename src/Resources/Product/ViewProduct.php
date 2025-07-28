@@ -2,20 +2,15 @@
 
 namespace Hanafalah\ModuleManufacture\Resources\Product;
 
-use Hanafalah\LaravelSupport\Resources\ApiResource;
+use Hanafalah\ModuleManufacture\Resources\Material\ViewMaterial;
 use Illuminate\Http\Request;
 
-class ViewProduct extends ApiResource{
+class ViewProduct extends ViewMaterial{
     public function toArray(Request $request): array
     {
-        return [
-            'id'   => $this->id,
-            'name' => $this->name, 
-            'item' => $this->relationValidation('item',function(){
-                return $this->item->toViewApi()->resolve();
-            }),
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at
+        $arr = [
         ];
+        $arr = $this->mergeArray(parent::toArray($request),$arr);
+        return $arr;
     }
 }

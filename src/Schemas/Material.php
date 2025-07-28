@@ -26,7 +26,7 @@ class Material extends PackageManagement implements ContractsMaterial
     }
 
     public function prepareStoreMaterial(MaterialData $material_dto): Model{
-        $material = $this->material()->updateOrCreate([
+        $material = $this->usingEntity()->updateOrCreate([
             'id' => $material_dto->id ?? null
         ],[
             'name'                 => $material_dto->name,
@@ -41,6 +41,15 @@ class Material extends PackageManagement implements ContractsMaterial
             $item_dto->reference_id   = $material->getKey();
             $item_dto->reference_type = $material->getMorphClass();
             $this->schemaContract('item')->prepareStoreItem($item_dto);
+        }
+
+        if (isset($material_dto->bill_of_materials) && count($material_dto->bill_of_materials) > 0) {
+            $bom_schema = $this->schemaContract('bill_of_material');
+            foreach ($material_dto->bill_of_materials as $bom_dto) {
+                $bom_dto->bill_type = $material->flag;
+                $bom_dto->bill_id   = $material->getKey();
+                $bom_schema->prepareStoreBillOfMaterial($bom_dto);
+            }
         }
         return $this->material_model = $material;
     }

@@ -2,23 +2,19 @@
 
 namespace Hanafalah\ModuleManufacture\Resources\Product;
 
+use Hanafalah\ModuleManufacture\Resources\Material\ShowMaterial;
 use Illuminate\Http\Request;
 
 class ShowProduct extends ViewProduct{
     public function toArray(Request $request): array
     {
         $arr = [
-            'item' => $this->relationValidation('item',function(){
-                return $this->item->toViewApi()->resolve();
-            }),
-            'materials' => $this->relationValidation('materials',function(){
-                return $this->materials->transform(function($material){
-                    return $material->toViewApi()->resolve();
-                });
-            })
+            'service' => $this->relationValidation('service', function () {
+                return $this->service->toShowApi()->resolve();
+            },$this->prop_service ?? null)
         ];
-
-        $arr = $this->mergeArray(parent::toArray($request),$arr);
+        $show = $this->resolveNow(new ShowMaterial($this));
+        $arr = $this->mergeArray(parent::toArray($request),$show,$arr);
         return $arr;
     }
 }
