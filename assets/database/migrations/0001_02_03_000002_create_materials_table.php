@@ -32,7 +32,7 @@ return new class extends Migration
                 $table->string('material_code')->nullable();
                 $table->string('name',255)->nullable();
 
-                $table->foreignIdFor($material_category::class)
+                $table->foreignIdFor($material_category::class)->nullable()
                     ->index()->constrained()->cascadeOnDelete()->cascadeOnUpdate();
 
                 $table->json('props')->nullable();
