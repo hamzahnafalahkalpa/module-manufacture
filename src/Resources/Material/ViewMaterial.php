@@ -13,7 +13,10 @@ class ViewMaterial extends ApiResource
             'name'              => $this->name, 
             'material_category' => $this->prop_material_category,
             'item'              => $this->relationValidation('item',function(){
-                return $this->item->toViewApi()->resolve();
+                return $this->item->toViewApiOnlies(
+                    'id','item_code','name', 'selling_price',
+                    'unit_id', 'unit'
+                );
             })
         ];
         return $arr;
