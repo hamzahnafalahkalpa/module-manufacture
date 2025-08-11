@@ -11,6 +11,7 @@ class ViewMaterial extends ApiResource
         $arr = [
             'id'                => $this->id, 
             'name'              => $this->name, 
+            'flag'              => $this->flag, 
             'material_category' => $this->prop_material_category,
             'item'              => $this->relationValidation('item',function(){
                 return $this->item->toViewApiOnlies(

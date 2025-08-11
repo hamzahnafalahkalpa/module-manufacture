@@ -3,14 +3,14 @@
 namespace Hanafalah\ModuleManufacture\Data;
 
 use Hanafalah\LaravelSupport\Supports\Data;
-use Hanafalah\ModuleManufacture\Contracts\Data\BomData as DataBomData;
+use Hanafalah\ModuleManufacture\Contracts\Data\BillOfMaterialData as DataBillOfMaterialData;
 use Spatie\LaravelData\Attributes\MapInputName;
 use Spatie\LaravelData\Attributes\MapName;
 use Spatie\LaravelData\Attributes\Validation\RequiredWithout;
 use Spatie\LaravelData\Attributes\Validation\RequiredWithoutAll;
 use Spatie\LaravelData\Contracts\BaseData;
 
-class BomData extends Data implements DataBomData, BaseData{
+class BillOfMaterialData extends Data implements DataBillOfMaterialData, BaseData{
     #[MapName('id')]    
     #[MapInputName('id')]
     #[RequiredWithoutAll('item_id','material_id')]
