@@ -20,7 +20,6 @@
     },
     "require": {
         "hanafalah/laravel-support": "dev-main",
-        "hanafalah/module-item": "dev-main",
-        "hanafalah/module-service": "dev-main"
+        "hanafalah/module-item": "dev-main"
     }
 }
