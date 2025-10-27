@@ -11,13 +11,6 @@
             "email": "hamzahnafalah@gmail.com"
         }
     ],
-    "extra": {
-        "laravel": {
-            "providers": [
-                "Hanafalah\\ModuleManufacture\\ModuleManufactureServiceProvider"
-            ]
-        }
-    },
     "require": {
         "hanafalah/laravel-support": "dev-main",
         "hanafalah/module-item": "dev-main"
