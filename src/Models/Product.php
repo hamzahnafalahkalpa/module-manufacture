@@ -15,7 +15,7 @@ class Product extends Material{
         return ShowProduct::class;
     }
 
-    protected function isUsingService(): bool{
+    public function isUsingService(): bool{
         return true;
     }
 }
